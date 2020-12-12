@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,7 @@ SHARED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'customers',
+    'django_celery_beat',
 ]
 
 TENANT_APPS = [
@@ -147,4 +149,9 @@ STATIC_URL = '/static/'
 
 TENANT_MODEL = "customers.Client" # app.Model
 
-TENANT_DOMAIN_MODEL = "customers.Domain"  # app.Model
+TENANT_DOMAIN_MODEL = "customers.Domain"  # app.Model\
+
+CELERY_BROKER_URL = "amqp://guest:guest@localhost"
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
