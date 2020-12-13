@@ -8,3 +8,5 @@ from .models import *
 #     pass
 
 admin.site.register(MyUser)
+
+admin.site.register(Tempoo)

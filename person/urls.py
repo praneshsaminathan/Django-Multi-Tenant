@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from django.conf import settings
-from .views import MyUserViewSet
+from .views import MyUserViewSet, TempAPIView
 
 
 router = DefaultRouter(trailing_slash=True)
@@ -26,4 +26,5 @@ def get_api_url(name='api', version=settings.API_VERSION, app_name='', url_name=
 
 urlpatterns = [
     path(get_api_url(), include(router.urls)),
+    path('temp/', TempAPIView.as_view())
 ]
